@@ -36,7 +36,7 @@ from chatui.pages import utils
 
 _LOGGER = logging.getLogger(__name__)
 PATH = "/"
-TITLE = "Hybrid RAG: Chat UI"
+TITLE = "TO Brasil RAG: Chat UI"
 OUTPUT_TOKENS = 250
 MAX_DOCS = 5
 
@@ -159,7 +159,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                         gr.Markdown("")
 
                 # Hidden button to expand output sliders, if hidden
-                out_tabs_show = gr.Button(value="Show Output Tools", size="sm", visible=True)
+                out_tabs_show = gr.Button(value="Output Tools", size="sm", visible=True)
 
                 # Render the user input textbox and checkbox to toggle vanilla inference and RAG.
                 with gr.Row(equal_height=True):
@@ -167,37 +167,37 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                         msg = gr.Textbox(
                             show_label=False,
                             lines=3,
-                            placeholder="Enter text and press SUBMIT",
+                            placeholder="Digite uma mensagem e aperte SUBMIT",
                             container=False,
                             interactive=True,
                         )
                     with gr.Column(scale=1, min_width=100):
                         kb_checkbox = gr.CheckboxGroup(
-                            ["Toggle to use Vector Database"], label="Vector Database", info="Supply your uploaded documents to the chatbot"
+                            ["Usar Vector Database"], label="Vector Database", info="Fornecer os documentos fornecidos ao chatbot"
                         )
 
                 # Render the row of buttons: submit query, clear history, show metrics and contexts
                 with gr.Row():
                     submit_btn = gr.Button(value="[NOT READY] Submit", interactive=False)
-                    _ = gr.ClearButton([msg, chatbot, metrics, metrics_history], value="Clear history")
-                    mtx_show = gr.Button(value="Show Metrics")
-                    mtx_hide = gr.Button(value="Hide Metrics", visible=False)
-                    ctx_show = gr.Button(value="Show Context")
-                    ctx_hide = gr.Button(value="Hide Context", visible=False)
+                    _ = gr.ClearButton([msg, chatbot, metrics, metrics_history], value="Limpar histórico")
+                    mtx_show = gr.Button(value="Mostrar Métricas")
+                    mtx_hide = gr.Button(value="Esconder Métricas", visible=False)
+                    ctx_show = gr.Button(value="Mostrar Contexto")
+                    ctx_hide = gr.Button(value="Esconder Contexto", visible=False)
 
             # Right Column will display the inference and database settings
             with gr.Column(scale=10, min_width=450, visible=True) as settings_column:
                 with gr.Tabs(selected=0) as settings_tabs:
 
                     # First tab item is a button to start the RAG backend and unlock other settings
-                    with gr.TabItem("Initial Setup", id=0, interactive=False, visible=True) as setup_settings:
+                    with gr.TabItem("Configuração inicial", id=0, interactive=False, visible=True) as setup_settings:
                         gr.Markdown("<br> ")
                         gr.Markdown(info.setup)
-                        rag_start_button = gr.Button(value="Set Up RAG Backend", variant="primary")
+                        rag_start_button = gr.Button(value="Configurar RAG Backend", variant="primary")
                         gr.Markdown("<br> ")
 
                     # Second tab item consists of all the inference mode settings
-                    with gr.TabItem("Inference Settings", id=1, interactive=False, visible=True) as inf_settings:
+                    with gr.TabItem("Configurações de inferência", id=1, interactive=False, visible=True) as inf_settings:
                         inference_mode = gr.Radio(["Local System", "Cloud Endpoint", "Self-Hosted Microservice"], 
                                                   label="Inference Mode", 
                                                   info=info.inf_mode_info, 
@@ -208,11 +208,11 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
 
                             # Inference settings for local TGI inference server
                             with gr.TabItem("Local System", id=0, interactive=False, visible=False) as local:
-                                with gr.Accordion("Prerequisites", open=True, elem_id="accordion"):
+                                with gr.Accordion("Pré-requisitos", open=True, elem_id="accordion"):
                                     gr.Markdown(info.local_prereqs)
-                                with gr.Accordion("Instructions", open=False, elem_id="accordion"):
+                                with gr.Accordion("Instruções", open=False, elem_id="accordion"):
                                     gr.Markdown(info.local_info)
-                                with gr.Accordion("Troubleshooting", open=False, elem_id="accordion"):
+                                with gr.Accordion("Resolução de problemas", open=False, elem_id="accordion"):
                                     gr.Markdown(info.local_trouble)
 
                                 gate_checkbox = gr.CheckboxGroup(
@@ -226,7 +226,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                                                                         "microsoft/Phi-3-mini-128k-instruct"], 
                                                              value = "nvidia/Llama3-ChatQA-1.5-8B",
                                                              interactive = True,
-                                                             label = "Select a model (or input your own).", 
+                                                             label = "Selecione um modelo (ou escolha o seu próprio).",
                                                              allow_custom_value = True, 
                                                              elem_id="rag-inputs")
                                 local_model_quantize = gr.Dropdown(choices = ["None",
@@ -234,7 +234,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                                                                               "4-Bit"], 
                                                                    value = utils.preset_quantization(),
                                                                    interactive = True,
-                                                                   label = "Select model quantization.", 
+                                                                   label = "Selecione um modelo de quantização",
                                                                    elem_id="rag-inputs")
                                 
                                 with gr.Row(equal_height=True):
@@ -244,11 +244,11 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
 
                             # Inference settings for cloud endpoints inference mode
                             with gr.TabItem("Cloud Endpoint", id=1, interactive=False, visible=False) as cloud:
-                                with gr.Accordion("Prerequisites", open=True, elem_id="accordion"):
+                                with gr.Accordion("Pré-requisitos", open=True, elem_id="accordion"):
                                     gr.Markdown(info.cloud_prereqs)
-                                with gr.Accordion("Instructions", open=False, elem_id="accordion"):
+                                with gr.Accordion("Instruções", open=False, elem_id="accordion"):
                                     gr.Markdown(info.cloud_info)
-                                with gr.Accordion("Troubleshooting", open=False, elem_id="accordion"):
+                                with gr.Accordion("Resolução de problemas", open=False, elem_id="accordion"):
                                     gr.Markdown(info.cloud_trouble)
                                 
                                 nvcf_model_family = gr.Dropdown(choices = ["Select", 
@@ -263,22 +263,22 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                                                                            "AI21 Labs"], 
                                                                 value = "Select", 
                                                                 interactive = True,
-                                                                label = "Select a model family.", 
+                                                                label = "Selecione uma família de modelos",
                                                                 elem_id="rag-inputs")
                                 nvcf_model_id = gr.Dropdown(choices = ["Select"], 
                                                             value = "Select",
                                                             interactive = True,
-                                                            label = "Select a model.", 
+                                                            label = "Selecione um modelo",
                                                             visible = False,
                                                             elem_id="rag-inputs")
 
                             # Inference settings for self-hosted microservice inference mode
                             with gr.TabItem("Self-Hosted Microservice", id=2, interactive=False, visible=False) as microservice:
-                                with gr.Accordion("Prerequisites", open=True, elem_id="accordion"):
+                                with gr.Accordion("Pré-requisitos", open=True, elem_id="accordion"):
                                     gr.Markdown(info.nim_prereqs)
-                                with gr.Accordion("Instructions", open=False, elem_id="accordion"):
+                                with gr.Accordion("Instruções", open=False, elem_id="accordion"):
                                     gr.Markdown(info.nim_info)
-                                with gr.Accordion("Troubleshooting", open=False, elem_id="accordion"):
+                                with gr.Accordion("Resolução de problemas", open=False, elem_id="accordion"):
                                     gr.Markdown(info.nim_trouble)
         
                                 # User can run a microservice remotely via an endpoint, or as a local inference server.
@@ -319,7 +319,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                                             stop_local_nim = gr.Button(value="Stop Microservice", interactive=False, size="sm")
 
                     # Third tab item consists of database and document upload settings
-                    with gr.TabItem("Upload Documents Here", id=2, interactive=False, visible=True) as vdb_settings:
+                    with gr.TabItem("Upload Documentos", id=2, interactive=False, visible=True) as vdb_settings:
                         
                         gr.Markdown(info.update_kb_info)
                         
@@ -337,17 +337,17 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                                               file_count="multiple")
         
                         with gr.Row():
-                            doc_show = gr.Button(value="Show Documents", size="sm")
-                            doc_hide = gr.Button(value="Hide Documents", visible=False, size="sm")
-                            clear_docs = gr.Button(value="Clear Database", interactive=False, size="sm") 
+                            doc_show = gr.Button(value="Mostrar Documentos", size="sm")
+                            doc_hide = gr.Button(value="Esconder Documents", visible=False, size="sm")
+                            clear_docs = gr.Button(value="Limpar Database", interactive=False, size="sm")
 
                     # Final tab item consists of option to collapse the settings to reduce clutter on the UI
-                    with gr.TabItem("Hide All Settings", id=3, visible=False) as hide_all_settings:
+                    with gr.TabItem(">> Esconder Configurações", id=3, visible=False) as hide_all_settings:
                         gr.Markdown("")
 
             # Hidden column to be rendered when the user collapses all settings.
             with gr.Column(scale=1, min_width=100, visible=False) as hidden_settings_column:
-                show_settings = gr.Button(value="< Expand", size="sm")
+                show_settings = gr.Button(value="<< Expandir", size="sm")
 
         def _toggle_gated(models: List[str]) -> Dict[gr.component, Dict[Any, Any]]:
             """" Event listener to toggle local models displayed to the user. """
@@ -507,7 +507,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
             """ Event listener to select a different family of model for cloud endpoint inference. """
             interactive = True
             submit_value = "Submit"
-            msg_value = "Enter text and press SUBMIT"
+            msg_value = "Digite uma mensagem e aperte SUBMIT"
             if family == "NVIDIA":
                 choices = ["Llama3 ChatQA-1.5 8B", 
                            "Llama3 ChatQA-1.5 70B", 
@@ -573,7 +573,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                 visible = False
                 interactive = False
                 submit_value = "[NOT READY] Submit"
-                msg_value = "[NOT READY] Select a model OR Select a Different Inference Mode."
+                msg_value = "[NOT READY] Selecione um modelo OU Selecione um Modo de Inferência diferente."
             return {
                 nvcf_model_id: gr.update(choices=choices, value=value, visible=visible),
                 submit_btn: gr.update(value=submit_value, interactive=interactive),
@@ -636,7 +636,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                     start_local_server: gr.update(value=out[0], variant=colors[0], interactive=interactive[0]),
                     stop_local_server: gr.update(value=out[1], variant=colors[1], interactive=interactive[1]),
                     msg: gr.update(interactive=True, 
-                                   placeholder=("Enter text and press SUBMIT" if interactive[2] else "[NOT READY] Start the Local Inference Server OR Select a Different Inference Mode.")),
+                                   placeholder=("Digite uma mensagem e aperte SUBMIT" if interactive[2] else "[NOT READY] Inicie o Servidor de Inferência Local OU Selecione um Modo de Inferência diferente.")),
                     submit_btn: gr.update(value="Submit" if interactive[2] else "[NOT READY] Submit", interactive=interactive[2]),
                     download_model: gr.update(interactive=interactive[3]),
                 }
@@ -762,7 +762,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                         submit_btn: gr.update(value=submit_value, interactive=interactive[3]),
                         prefetch_nim: gr.update(interactive=prefetch_nim_interactive),
                         msg: gr.update(interactive=True, 
-                                       placeholder=("Enter text and press SUBMIT" if interactive[3] else "[NOT READY] Start the Local Microservice OR Select a Different Inference Mode.")),
+                                       placeholder=("Digite uma mensagem e aperte SUBMIT" if interactive[3] else "[NOT READY] Inicie o Microserviço Local OU Selecione um Modo de Inferência diferente.")),
                     }
                 rc = subprocess.call("/bin/bash /project/code/scripts/local-nim-configs/preflight.sh " + model, shell=True)
                 if rc != 0:
@@ -785,7 +785,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                         submit_btn: gr.update(value=submit_value, interactive=interactive[3]),
                         prefetch_nim: gr.update(interactive=prefetch_nim_interactive),
                         msg: gr.update(interactive=True, 
-                                       placeholder=("Enter text and press SUBMIT" if interactive[3] else "[NOT READY] Start the Local Microservice OR Select a Different Inference Mode.")),
+                                       placeholder=("Digite uma mensagem e aperte SUBMIT" if interactive[3] else "[NOT READY] Inicie o Microserviço Local OU Selecione um Modo de Inferência diferente.")),
                     }
                 progress(0.6, desc="Starting Microservice, may take a moment")
                 rc = subprocess.call("/bin/bash /project/code/scripts/local-nim-configs/start-local-nim.sh " + model + " " + utils.nim_extract_model(model), shell=True)
@@ -849,7 +849,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                 submit_btn: gr.update(value=submit_value, interactive=interactive[3]),
                 prefetch_nim: gr.update(interactive=prefetch_nim_interactive),
                 msg: gr.update(interactive=True, 
-                               placeholder=("Enter text and press SUBMIT" if interactive[3] else "[NOT READY] Start the Local Microservice OR Select a Different Inference Mode.")),
+                               placeholder=("Digite uma mensagem e aperte SUBMIT" if interactive[3] else "[NOT READY] Inicie o Microserviço Local OU Selecione um Modo de Inferência diferente.")),
             }
 
         start_local_nim.click(_toggle_local_nim, 
@@ -891,7 +891,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                 return {
                     tabs: gr.update(selected=0),
                     msg: gr.update(interactive=True, 
-                                   placeholder=("Enter text and press SUBMIT" if interactive else "[NOT READY] Start the Local Inference Server OR Select a Different Inference Mode.")),
+                                   placeholder=("Digite uma mensagem e aperte SUBMIT" if interactive else "[NOT READY] Inicie o Servidor de Inferência Local OU Selecione um Modo de Inferência diferente.")),
                     inference_mode: gr.update(info="To use your LOCAL GPU for inference, start the Local Inference Server before making a query."),
                     submit_btn: gr.update(value="Submit" if interactive else "[NOT READY] Submit", interactive=interactive),
                 }
@@ -902,14 +902,14 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                     interactive=True
                 return {
                     tabs: gr.update(selected=1),
-                    msg: gr.update(interactive=True, placeholder=("Enter text and press SUBMIT" if interactive else "[NOT READY] Select a model OR Select a Different Inference Mode.")),
+                    msg: gr.update(interactive=True, placeholder=("Digite uma mensagem e aperte SUBMIT" if interactive else "[NOT READY] Selecione um modelo OU Selecione um Modo de Inferência diferente.")),
                     inference_mode: gr.update(info="To use a CLOUD endpoint for inference, select the desired model before making a query."),
                     submit_btn: gr.update(value="Submit" if interactive else "[NOT READY] Submit", interactive=interactive),
                 }
             elif btn == "Self-Hosted Microservice":
                 return {
                     tabs: gr.update(selected=2),
-                    msg: gr.update(interactive=True, placeholder="Enter text and press SUBMIT" if (which_nim_tab == 0) else "[NOT READY] Start the Local Microservice OR Select a Different Inference Mode."),
+                    msg: gr.update(interactive=True, placeholder="Digite uma mensagem e aperte SUBMIT" if (which_nim_tab == 0) else "[NOT READY] Inicie o Microservice Local OU Selecione um Modo de Inferência diferente."),
                     inference_mode: gr.update(info="To use a MICROSERVICE for inference, input the endpoint (and/or model) before making a query."),
                     submit_btn: gr.update(value="Submit" if (which_nim_tab == 0) else "[NOT READY] Submit",
                                           interactive=True if (which_nim_tab == 0) else False),
@@ -1046,7 +1046,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                 vdb_settings: gr.update(visible=visibility[2], interactive=interactive[2]),
                 submit_btn: gr.update(value=submit_value, interactive=interactive[3]),
                 hide_all_settings: gr.update(visible=visibility[3]),
-                msg: gr.update(interactive=True, placeholder="[NOT READY] Select a model OR Select a Different Inference Mode." if rc != 1 else "Enter text and press SUBMIT"),
+                msg: gr.update(interactive=True, placeholder="[NOT READY] Selecione um modelo OU Selecione um Modo de Inferência diferente." if rc != 1 else "Digite uma mensagem e aperte SUBMIT"),
             }
         
         rag_start_button.click(_toggle_rag_start, [rag_start_button], [setup_settings, inf_settings, vdb_settings, submit_btn, hide_all_settings, msg])
@@ -1057,7 +1057,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                 which_nim_tab: 0, 
                 is_local_nim: False, 
                 submit_btn: gr.update(value="Submit", interactive=True),
-                msg: gr.update(placeholder="Enter text and press SUBMIT")
+                msg: gr.update(placeholder="Digite uma mensagem e aperte SUBMIT")
             }
         
         remote_microservice.select(_toggle_remote_ms, None, [which_nim_tab, is_local_nim, submit_btn, msg])
@@ -1067,17 +1067,17 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
             if (start_btn == "Microservice Started"):
                 interactive = True
                 submit_value = "Submit"
-                msg_value = "Enter text and press SUBMIT"
+                msg_value = "Digite uma mensagem e aperte SUBMIT"
                 submittable = 0
             elif (start_btn == "Start Microservice" and stop_btn == "Stop Microservice"): 
                 interactive = False
                 submit_value = "[NOT READY] Submit"
-                msg_value = "[NOT READY] Start the Local Microservice OR Select a Different Inference Mode."
+                msg_value = "[NOT READY] Inicie o Microservice Local OU Selecione um Modo de Inferência diferente."
                 submittable = 1
             else:
                 interactive = False
                 submit_value = "[NOT READY] Submit"
-                msg_value = "[NOT READY] Start the Local Microservice OR Select a Different Inference Mode."
+                msg_value = "[NOT READY] Inicie o Microservice Local OU Selecione um Modo de Inferência diferente."
                 submittable = 1
             return {
                 which_nim_tab: submittable, 

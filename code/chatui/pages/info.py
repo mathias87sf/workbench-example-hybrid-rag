@@ -13,28 +13,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### Markdown used to render certain documentation on the gradio application. ###
+### Markdown usado para renderizar certa documentação na aplicação gradio. ###
 
 setup = """
-Welcome to the Hybrid RAG example project for NVIDIA AI Workbench! \n\nTo get started, click the following button to set up the backend API server and vector database. This is a one-time process and may take a few moments to complete.
+Bem-vindo ao projeto de exemplo Hybrid RAG para o NVIDIA AI Workbench! \n\nPara começar, clique no botão a seguir para configurar o servidor de API de backend e o banco de dados vetorial. Este é um processo único e pode levar alguns momentos para ser concluído.
 """
 
 update_kb_info = """
 <br> 
-Upload your text files here. This will embed them in the vector database, and they will persist as potential context for the model until you clear the database. Careful, clearing the database is irreversible!
+Carregue seus arquivos de texto aqui. Eles serão incorporados no banco de dados vetorial e persistirão como contexto potencial para o modelo até você limpar o banco de dados. Cuidado, limpar o banco de dados é irreversível!
 """
 
-inf_mode_info = "To use a CLOUD endpoint for inference, select the desired model before making a query."
+inf_mode_info = "Para usar um endpoint na NUVEM para inferência, selecione o modelo desejado antes de fazer uma consulta."
 
 local_info = """
-First, select the desired model and quantization level. You can optionally filter the model list by gated vs ungated models. Then load the model. This will either download it or load it from cache. The download may take a few minutes depending on your network. 
+Primeiro, selecione o modelo desejado e o nível de quantização. Você pode, opcionalmente, filtrar a lista de modelos por modelos restritos e não restritos. Em seguida, carregue o modelo. Isso pode baixá-lo ou carregá-lo do cache. O download pode levar alguns minutos, dependendo da sua rede.
 
-Once the model is loaded, start the Inference Server. It takes ~40s to warm up in most cases. Ensure you have enough GPU VRAM to run a model locally or you may see OOM errors when starting the inference server. When the server is started, chat with the model using the text input on the left.
+Uma vez que o modelo esteja carregado, inicie o Servidor de Inferência. Geralmente, leva cerca de 40 segundos para ser iniciado. Certifique-se de ter VRAM suficiente na GPU para rodar um modelo localmente ou poderá ocorrer erro de memória (OOM) ao iniciar o servidor de inferência. Quando o servidor for iniciado, converse com o modelo usando o campo de texto à esquerda.
 """
 
 local_prereqs = """
-* A ``HUGGING_FACE_HUB_TOKEN`` project secret is required for gated models. See [Tutorial 1](https://github.com/NVIDIA/workbench-example-hybrid-rag/blob/main/README.md#tutorial-1-using-a-local-gpu). 
-* If using any of the following gated models, verify "You have been granted access to this model" appears on the model card(s):
+* Um segredo de projeto ``HUGGING_FACE_HUB_TOKEN`` é necessário para modelos restritos. Veja [Tutorial 1](https://github.com/NVIDIA/workbench-example-hybrid-rag/blob/main/README.md#tutorial-1-using-a-local-gpu). 
+* Se estiver usando qualquer um dos seguintes modelos restritos, verifique se "Você foi autorizado a acessar este modelo" aparece na página do modelo:
     * [Mistral-7B-Instruct-v0.1](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1)
     * [Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
     * [Llama-2-7b-chat-hf](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)
@@ -42,8 +42,8 @@ local_prereqs = """
 """
 
 local_trouble = """
-* Ensure you have stopped any local processes also running on the system GPU(s). Otherwise, you may run into OOM errors running on the local inference server. 
-* Your Hugging Face key may be missing and/or lack permissions for certain models. Ensure you see a "You have been granted access to this model" for each page: 
+* Certifique-se de ter parado quaisquer processos locais também rodando nas GPUs do sistema. Caso contrário, poderá ocorrer erro de memória (OOM) ao rodar no servidor de inferência local. 
+* Sua chave do Hugging Face pode estar ausente ou sem permissões para certos modelos. Verifique se você vê "Você foi autorizado a acessar este modelo" em cada página:
     * [Mistral-7B-Instruct-v0.1](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1)
     * [Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
     * [Llama-2-7b-chat-hf](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)
@@ -51,52 +51,52 @@ local_trouble = """
 """
 
 cloud_info = """
-This method uses NVCF API Endpoints from the NVIDIA API Catalog. Select a desired model family and model from the dropdown. You may then query the model using the text input on the left.
+Este método utiliza Endpoints da API NVCF do Catálogo de APIs da NVIDIA. Selecione a família de modelos desejada e o modelo a partir do menu suspenso. Você pode então consultar o modelo usando o campo de texto à esquerda.
 """
 
 cloud_prereqs = """
-* A ``NVCF_RUN_KEY`` project secret is required. See the [Quickstart](https://github.com/NVIDIA/workbench-example-hybrid-rag/blob/main/README.md#tutorial-using-a-cloud-endpoint). 
-    * Generate the key [here](https://build.nvidia.com/mistralai/mistral-7b-instruct-v2) by clicking "Get API Key". Log in with [NGC credentials](https://ngc.nvidia.com/signin).
+* Um segredo de projeto ``NVCF_RUN_KEY`` é necessário. Veja o [Quickstart](https://github.com/NVIDIA/workbench-example-hybrid-rag/blob/main/README.md#tutorial-using-a-cloud-endpoint). 
+    * Gere a chave [aqui](https://build.nvidia.com/mistralai/mistral-7b-instruct-v2) clicando em "Get API Key". Faça login com as [credenciais NGC](https://ngc.nvidia.com/signin).
 """
 
 cloud_trouble = """
-* Ensure your NVCF run key is correct and configured properly in the AI Workbench. 
+* Certifique-se de que sua chave NVCF esteja correta e configurada adequadamente no AI Workbench. 
 """
 
 nim_info = """
-This method uses a [NIM container](https://catalog.ngc.nvidia.com/orgs/nim/teams/meta/containers/llama3-8b-instruct/tags) that you may choose to self-host on your own infra of choice. Check out the NIM [docs](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html) for details. Users can also try 3rd party services supporting the [OpenAI API](https://github.com/ollama/ollama/blob/main/docs/openai.md) like [Ollama](https://github.com/ollama/ollama/blob/main/README.md#building). Input the desired microservice IP, optional port number, and model name under the Remote Microservice option. Then, start conversing using the text input on the left.
+Este método utiliza um [container NIM](https://catalog.ngc.nvidia.com/orgs/nim/teams/meta/containers/llama3-8b-instruct/tags) que você pode optar por hospedar por conta própria em sua infraestrutura de sua escolha. Confira a documentação do NIM [aqui](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html) para mais detalhes. Os usuários também podem tentar serviços de terceiros que suportem a [API OpenAI](https://github.com/ollama/ollama/blob/main/docs/openai.md) como o [Ollama](https://github.com/ollama/ollama/blob/main/README.md#building). Digite o IP do microserviço desejado, número da porta opcional e o nome do modelo sob a opção de Microserviço Remoto. Em seguida, inicie a conversa usando o campo de texto à esquerda.
 
-For AI Workbench on DOCKER users only, you may also choose to spin up a NIM instance running *locally* on the system by expanding the "Local" Microservice option; ensure any other local GPU processes has been stopped first to avoid issues with memory. The ``llama3-8b-instruct`` NIM container is provided as a default flow. Fetch the desired NIM container, select "Start Microservice", and begin conversing when complete. 
+Para usuários do AI Workbench no DOCKER, você também pode optar por executar uma instância NIM *localmente* no sistema, expandindo a opção "Microserviço Local"; certifique-se de que quaisquer outros processos locais de GPU tenham sido parados primeiro para evitar problemas de memória. O container ``llama3-8b-instruct`` do NIM é fornecido como fluxo padrão. Busque o container NIM desejado, selecione "Start Microservice" e inicie a conversa quando o processo estiver completo.
 """
 
 nim_prereqs = """
-* (Remote) Set up a NIM running on another system ([docs](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)). Alternatively, you may set up a 3rd party supporting the [OpenAI API](https://github.com/ollama/ollama/blob/main/docs/openai.md) like [Ollama](https://github.com/ollama/ollama/blob/main/README.md#building). Ensure your service is running and reachable. See [Tutorial 2](https://github.com/NVIDIA/workbench-example-hybrid-rag/blob/main/README.md#tutorial-2-using-a-remote-microservice). 
-* (Local) AI Workbench running on DOCKER is required for the LOCAL NIM option. Read and follow the additional prereqs and configurations in [Tutorial 3](https://github.com/NVIDIA/workbench-example-hybrid-rag/blob/main/README.md#tutorial-3-using-a-local-microservice). 
+* (Remoto) Configure um NIM em outro sistema ([documentação](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)). Alternativamente, você pode configurar um serviço de terceiros que suporte a [API OpenAI](https://github.com/ollama/ollama/blob/main/docs/openai.md) como o [Ollama](https://github.com/ollama/ollama/blob/main/README.md#building). Certifique-se de que seu serviço esteja em execução e acessível. Veja o [Tutorial 2](https://github.com/NVIDIA/workbench-example-hybrid-rag/blob/main/README.md#tutorial-2-using-a-remote-microservice). 
+* (Local) AI Workbench rodando no DOCKER é necessário para a opção LOCAL NIM. Leia e siga os pré-requisitos e configurações adicionais no [Tutorial 3](https://github.com/NVIDIA/workbench-example-hybrid-rag/blob/main/README.md#tutorial-3-using-a-local-microservice).
 """
 
 nim_trouble = """
-* Send a curl request to your microservice to ensure it is running and reachable. NIM docs [here](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html).
-* AI Workbench running on a Docker runtime is required for the LOCAL NIM option. Otherwise, set up the self-hosted NIM to be used remotely. 
-* If running the local NIM option, ensure you have set up the proper project configurations according to this project's README. Unlike the other inference modes, these are not preconfigured. 
-* If any other processes are running on the local GPU(s), you may run into memory issues when also running the NIM locally. Stop the other processes. 
+* Envie uma solicitação curl para seu microserviço para garantir que ele esteja em execução e acessível. Documentação do NIM [aqui](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html).
+* AI Workbench rodando em runtime Docker é necessário para a opção LOCAL NIM. Caso contrário, configure o NIM auto-hospedado para ser usado remotamente. 
+* Se estiver usando a opção NIM local, certifique-se de que configurou os parâmetros de projeto adequados de acordo com o README deste projeto. Ao contrário dos outros modos de inferência, esses não são pré-configurados. 
+* Se houver outros processos rodando na(s) GPU(s) local(is), você poderá enfrentar problemas de memória ao rodar o NIM localmente. Pare os outros processos.
 """
 
 num_token_label = """
-The maximum number of tokens that can be generated in the completion.
+O número máximo de tokens que podem ser gerados na conclusão.
 """
 
 temp_label = """
-What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.
+Qual temperatura de amostragem usar, entre 0 e 2. Valores mais altos, como 0.8, tornarão a saída mais aleatória, enquanto valores mais baixos, como 0.2, tornarão a saída mais focada e determinística. Recomendamos alterar este parâmetro ou top_p, mas não ambos.
 """
 
 top_p_label = """
-An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+Uma alternativa à amostragem com temperatura, chamada amostragem por núcleo, onde o modelo considera os resultados dos tokens com massa de probabilidade top_p. Então, 0.1 significa que apenas os tokens que compõem os 10% principais da massa de probabilidade serão considerados.
 """
 
 freq_pen_label = """
-Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+Número entre -2.0 e 2.0. Valores positivos penalizam novos tokens com base na frequência existente no texto até o momento, diminuindo a probabilidade do modelo de repetir a mesma linha literalmente.
 """
 
 pres_pen_label = """
-Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+Número entre -2.0 e 2.0. Valores positivos penalizam novos tokens com base em sua aparição no texto até o momento, aumentando a probabilidade do modelo de falar sobre novos tópicos.
 """
