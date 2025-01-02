@@ -155,7 +155,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                                                     label=info.pres_pen_label, 
                                                     interactive=True)
                         
-                    with gr.TabItem("Hide Output Tools", id=5) as hide_out_tools:
+                    with gr.TabItem("Esconder Output Tools", id=5) as hide_out_tools:
                         gr.Markdown("")
 
                 # Hidden button to expand output sliders, if hidden
