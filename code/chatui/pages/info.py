@@ -16,7 +16,7 @@
 ### Markdown usado para renderizar certa documentação na aplicação gradio. ###
 
 setup = """
-Bem-vindo ao projeto de exemplo Hybrid RAG para o NVIDIA AI Workbench! \n\nPara começar, clique no botão a seguir para configurar o servidor de API de backend e o banco de dados vetorial. Este é um processo único e pode levar alguns momentos para ser concluído.
+Bem-vindo ao projeto de exemplo TO Brasil RAG para o NVIDIA AI Workbench! \n\nPara começar, clique no botão a seguir para configurar o servidor de API de backend e o banco de dados vetorial. Este é um processo único e pode levar alguns momentos para ser concluído.
 """
 
 update_kb_info = """
