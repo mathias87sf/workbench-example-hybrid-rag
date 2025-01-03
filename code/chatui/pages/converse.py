@@ -338,7 +338,7 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
         
                         with gr.Row():
                             doc_show = gr.Button(value="Mostrar Documentos", size="sm")
-                            doc_hide = gr.Button(value="Esconder Documents", visible=False, size="sm")
+                            doc_hide = gr.Button(value="Esconder Documentos", visible=False, size="sm")
                             clear_docs = gr.Button(value="Limpar Database", interactive=False, size="sm")
 
                     # Final tab item consists of option to collapse the settings to reduce clutter on the UI
@@ -380,17 +380,17 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
                 
         def _toggle_info(btn: str) -> Dict[gr.component, Dict[Any, Any]]:
             """" Event listener to toggle context and/or metrics panes visible to the user. """
-            if btn == "Show Context":
+            if btn == "Mostrar Contexto":
                 out = [True, False, False, False, True, True, False, True, False]
-            elif btn == "Hide Context":
+            elif btn == "Esconder Contexto":
                 out = [False, False, False, True, False, True, False, True, False]
-            elif btn == "Show Metrics":
+            elif btn == "Mostrar Métricas":
                 out = [False, True, False, True, False, False, True, True, False]
-            elif btn == "Hide Metrics":
+            elif btn == "Esconder Métricas":
                 out = [False, False, False, True, False, True, False, True, False]
-            elif btn == "Show Documents":
+            elif btn == "Mostrar Documentos":
                 out = [False, False, True, True, False, True, False, False, True]
-            elif btn == "Hide Documents":
+            elif btn == "Esconder Documentos":
                 out = [False, False, False, True, False, True, False, True, False]
             return {
                 context: gr.update(visible=out[0]),
