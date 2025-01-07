@@ -116,5 +116,5 @@ class ChatClient:
             )
 
             _ = requests.post(
-                url, headers=headers, files=files, verify=False, timeout=3600  # type: ignore [arg-type]
+                url, headers=headers, files=files, verify=False  # type: ignore [arg-type]
             )  # nosec # verify=false is intentional for now
