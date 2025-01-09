@@ -215,6 +215,8 @@ def llm_chain_streaming(
     """Execute a simple LLM chain using the components defined above."""
     set_service_context(inference_mode, nvcf_model_id, nim_model_ip, num_tokens, temp, top_p, freq_pen)
 
+    question = question + ". Responda em português e, por favor, não mencione na resposta que isso lhe foi solicitado. E também não precisa dizer na resposta que é uma tradução ou que você está traduzindo."
+
     if inference_mode == "local":
         if "nvidia" in local_model_id:
             prompt = chat_templates.NVIDIA_CHAT_TEMPLATE.format(context_str=context, query_str=question)
@@ -296,6 +298,8 @@ def rag_chain_streaming(prompt: str,
                         pres_pen: float) -> "TokenGen":
     """Execute a Retrieval Augmented Generation chain using the components defined above."""
     set_service_context(inference_mode, nvcf_model_id, nim_model_ip, num_tokens, temp, top_p, freq_pen)
+
+    prompt = prompt + ". Responda em português e, por favor, não mencione na resposta que isso lhe foi solicitado. E também não precisa dizer na resposta que é uma tradução ou que você está traduzindo."
 
     if inference_mode == "local":
         get_llm(inference_mode, nvcf_model_id, nim_model_ip, num_tokens, temp, top_p, freq_pen).llm.max_new_tokens = num_tokens  # type: ignore
